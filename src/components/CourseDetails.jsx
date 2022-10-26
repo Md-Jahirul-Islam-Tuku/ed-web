@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaShoppingCart, FaStar } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router-dom';
+import PDF from './PDF';
 
 const CourseDetails = () => {
   const courseDetails = useLoaderData();
@@ -11,7 +12,7 @@ const CourseDetails = () => {
         <div className="flex items-center">
           <h2 className="mb-0 capitalize text-lg font-bold">{name}</h2>
         </div>
-        <button className="btn btn-sm btn-accent">Download PDF</button>
+        <PDF courseDetails={courseDetails} />
       </div>
       <div className="space-y-4">
         <div className="space-y-2">
