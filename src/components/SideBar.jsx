@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
     const [courses, setCourses] = useState([]);
@@ -9,19 +10,15 @@ const SideBar = () => {
     }, [])
     return (
         <div className="">
-            <h1 className="text-3xl my-10 font-bold">Course Catagory: {courses.length}</h1>
+            <h1 className="text-3xl my-10 font-bold">Course Category: {courses.length}</h1>
             <div className="overflow-x-auto">
-                <table className="table w-full">
-                    <tbody>
-                        {
-                            courses.map(course =>
-                                <tr
-                                    key={course.id}
-                                ><th className="text-2xl bg-cyan-100 hover:bg-cyan-200">{course.name}</th></tr>
-                            )
-                        }
-                    </tbody>
-                </table>
+                <div className="table w-full">
+                    {
+                        courses.map(course =>
+                            <Link to={`/course/${course.id}`} className="w-full" key={course.id}><h1 className="bg-blue-100 py-4 my-1 pl-4 text-2xl font-bold rounded-lg hover:bg-blue-200">{course.name}</h1></Link>
+                        )
+                    }
+                </div>
             </div>
         </div>
     )
