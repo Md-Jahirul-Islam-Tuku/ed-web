@@ -8,12 +8,12 @@ const PremiumAccess = () => {
       <div className="top-40 left-96 card w-96 bg-base-100 shadow-xl image-full">
          <figure><img src={thumbnail_url} alt="Thumbnail" /></figure>
          <div className="card-body">
-            <p className='text-2xl text-white'>{title}</p>
-            <h2 className="card-title text-white">Course ID: {id}</h2>
-            <h2 className="card-title text-white">Name: {name}</h2>
-            <h2 className="card-title text-white">Price: {price}</h2>
-            <h2 className="card-title text-white">Ratings: {rating}</h2>
-            <h2 className="card-title text-white">Total Purchase: {total_purchase}</h2>
+            <p className='text-2xl text-success'>{title}</p>
+            <h2 className="card-title text-secondary">Course ID: {id}</h2>
+            <h2 className="card-title text-secondary">Name: {name}</h2>
+            <h2 className="card-title text-secondary">Price: {price}</h2>
+            <h2 className="card-title text-secondary">Ratings: {rating}</h2>
+            <h2 className="card-title text-secondary">Total Purchase: {total_purchase}</h2>
          </div>
       </div>
    );
