@@ -10,10 +10,10 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
    const [user, setUser] = useState(null);
-   console.log(user);
    const [loading, setLoading] = useState(true);
-
+   
    const userRegister = (email, password) => {
+      setLoading(true);
       return createUserWithEmailAndPassword(auth, email, password)
    }
    const verifyEmail = () => {
@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
          if (recentUser === null || recentUser.emailVerified) {
             setUser(recentUser);
          }
-         setLoading(true);
+         setLoading(false);
       });
       return () => {
          unsubscribe();

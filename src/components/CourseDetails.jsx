@@ -7,7 +7,7 @@ const CourseDetails = () => {
   const courseDetails = useLoaderData();
   const { id, name, price, rating, total_purchase, details, title, image_url } = courseDetails;
   return (
-    <div className="max-w-full mx-44 my-10 p-4 shadow-md bg-white rounded-lg">
+    <div className="max-w-full lg:mx-44 my-10 p-4 shadow-md bg-white rounded-lg">
       <div className="flex justify-between pb-4 border-bottom">
         <div className="flex items-center">
           <h2 className="mb-0 capitalize text-lg font-bold">{name}</h2>

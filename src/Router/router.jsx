@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import CourseDetails from "../components/CourseDetails";
-import Home from "../components/Home";
+import Courses from "../components/Courses";
 import Login from "../components/Login";
 import PremiumAccess from "../components/PremiumAccess";
 import Register from "../components/Register";
 import Main from "../layout/Main";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home></Home>,
+        element: <Courses></Courses>,
         loader: () => fetch('https://ed-web-server.vercel.app/courses')
       },
       {
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/courses',
-        element: <Home></Home>,
+        element: <Courses></Courses>,
         loader: () => fetch('https://ed-web-server.vercel.app/courses')
       },
       {
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/premium-access/:id',
-        element: <PremiumAccess></PremiumAccess>,
+        element: <PrivateRoute><PremiumAccess></PremiumAccess></PrivateRoute>,
         loader: ({ params }) => fetch(`https://ed-web-server.vercel.app/courses/${params.id}`)
       },
     ]

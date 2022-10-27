@@ -6,10 +6,9 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  console.log(user?.displayName);
   const navigate = useNavigate();
   const userLogOut = () => {
-    logOut().then(()=>{navigate('/')}).catch(error=> console.error(error))
+    logOut().then(() => { navigate('/') }).catch(error => console.error(error))
   }
   return (
     <div className="navbar bg-slate-50 p-0 h-0 lg:px-20 md:px-10 sm:px-3">
@@ -19,12 +18,19 @@ const Navbar = () => {
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-5 h-5 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
           </label>
           <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-            <li><a>Item 1</a></li>
-            <li><a>Item 2</a></li>
-            <li><a>Item 3</a></li>
+            <li><Link to="/courses" >Courses</Link></li>
+            <li><a>FAQ</a></li>
+            <li><a>Blog</a></li>
+            {
+              user?.uid ? <><li><Link onClick={userLogOut} to="/" >Log out</Link></li>
+                <li title={user?.displayName}><div className="avatar"><div className="w-10 rounded-full">
+                  <img src={user?.photoURL} alt="..." />
+                </div></div></li></> : <><li><Link to="/register" >Register</Link></li>
+                <li><Link to="/login" >Login</Link></li></>
+            }
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case text-xl fontStyle" ><img src={logo} className='h-6 mr-1' /> EdWeb</Link>
+        <Link to="/" className="btn btn-ghost normal-case text-2xl fontStyle" ><img src={logo} className='h-8 mr-1' alt="..."/> EdWeb</Link>
       </div>
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal p-0 text-lg font-bold">
@@ -39,16 +45,12 @@ const Navbar = () => {
             </label>
           </li>
           {
-            user?.uid ? <><li><Link onClick={userLogOut} to="/login" >Log out</Link></li>
-              <li><div className="avatar">
-                <div className="w-10 rounded-full">
-                  <img src={user?.photoURL} alt='...' />
-                </div>
-              </div></li></> : <><li><Link to="/register" >Register</Link></li>
+            user?.uid ? <><li><Link onClick={userLogOut} to="/" >Log out</Link></li>
+              <li title={user?.displayName}><div className="avatar"><div className="w-10 rounded-full">
+                <img src={user?.photoURL} alt="..." />
+              </div></div></li></> : <><li><Link to="/register" >Register</Link></li>
               <li><Link to="/login" >Login</Link></li></>
           }
-          
-          
         </ul>
       </div>
     </div>

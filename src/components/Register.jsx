@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import google from '../../src/google.png';
 import github from '../../src/github.png'
 import { useContext } from 'react';
@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 
 const Register = () => {
   const { userRegister, auth, verifyEmail } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleRegister= e => {
     e.preventDefault();
     const form = e.target;
@@ -18,11 +19,11 @@ const Register = () => {
     const password = form.password.value;
     userRegister(email, password)
     .then(result => {
-      console.log(result.user);
       updateProfile(auth.currentUser, {
         displayName: name,
         photoURL: photo
       });
+      form.reset();
       handleVerifyEmail();
       toast.custom((t) => (
         <div
@@ -32,7 +33,7 @@ const Register = () => {
           {`${name} 👋 Please verify your email.`} 
         </div>
       ));
-      form.reset()
+      navigate('/login');
     }).catch(error => console.error(error))
   }
   const handleVerifyEmail = () => {
@@ -40,8 +41,8 @@ const Register = () => {
   }
 
   return (
-    <form onSubmit={handleRegister} className="w-[40%]">
-      <div className="card shadow-2xl bg-base-100 top-24 left-96">
+    <form onSubmit={handleRegister} className="lg:w-[40%] my-10 lg:my-0">
+      <div className="card shadow-2xl bg-base-100 lg:my-[10vh] lg:left-[20vw]">
         <h1 className='text-4xl font-bold mt-4'>Please Register</h1>
         <div className="p-5">
           <div className="form-control">

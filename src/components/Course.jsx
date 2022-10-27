@@ -31,11 +31,11 @@ const Course = ({ course }) => {
     //     </div>
     //   </div>
     // </div>
-    <div className="card card-compact w-100 bg-white shadow-xl">
+    <div className="card card-compact mb-10 md:mb-0 lg:mb-0 w-100 bg-white lg:shadow-xl shadow-lg">
       <div className="pl-4 py-3">
         <h2 className="card-title">{name}</h2>
       </div>
-      <figure><img className="h-72 w-96" src={thumbnail_url} alt="Shoes" /></figure>
+      <figure><img className="lg:h-72 lg:w-96 px-2 lg:px-0" src={thumbnail_url} alt="Shoes" /></figure>
       <div className="card-title px-4 pt-2 flex justify-between">
         <div className="flex items-center"><FaStar /><h1 className="ml-2">{rating}</h1></div>
         <div>

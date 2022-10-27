@@ -5,7 +5,7 @@ const PremiumAccess = () => {
    const coursePremium = useLoaderData();
    const { id, name, price, rating, total_purchase, title, thumbnail_url } = coursePremium;
    return (
-      <div className="top-40 left-96 card w-96 bg-base-100 shadow-xl image-full">
+      <div className="my-10 lg:my-0 lg:top-[40%] lg:left-[35%] card lg:w-96 bg-base-100 shadow-xl image-full">
          <figure><img src={thumbnail_url} alt="Thumbnail" /></figure>
          <div className="card-body">
             <p className='text-2xl text-success'>{title}</p>
