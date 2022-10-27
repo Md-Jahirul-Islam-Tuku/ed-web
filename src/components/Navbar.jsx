@@ -12,7 +12,7 @@ const Navbar = () => {
     logOut().then(() => { navigate('/') }).catch(error => console.error(error))
   }
   return (
-    <div className="navbar bg-slate-50 p-0 h-0 lg:px-20 md:px-10 sm:px-3">
+    <div className="lg:fixed z-10 navbar bg-slate-50 p-0 h-0 lg:px-20 md:px-10 sm:px-3">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -20,12 +20,14 @@ const Navbar = () => {
           </label>
           <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
             <li><Link to="/courses" >Courses</Link></li>
-            <li><a>FAQ</a></li>
-            <li><a>Blog</a></li>
+            <li><Link to='/faq' >FAQ</Link></li>
+            <li><Link to='/blog' >Blog</Link></li>
             {
               user?.uid ? <><li><Link onClick={userLogOut} to="/" >Log out</Link></li>
                 <li title={user?.displayName}><div className="avatar"><div className="w-10 rounded-full">
-                  <img src={user?.photoURL} alt="..." />
+                  {
+                    user?.photoURL ? <img src={user?.photoURL} alt="..." /> : <img className="p-2" src={demoProfile} alt="..." srcset="" />
+                  }
                 </div></div></li></> : <><li><Link to="/register" >Register</Link></li>
                 <li><Link to="/login" >Login</Link></li></>
             }
