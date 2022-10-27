@@ -35,7 +35,7 @@ const Course = ({ course }) => {
       <div className="pl-4 py-3">
         <h2 className="card-title">{name}</h2>
       </div>
-      <figure><img className="lg:h-72 lg:w-96 px-2 lg:px-0" src={thumbnail_url} alt="Shoes" /></figure>
+      <figure><img className="lg:h-72 lg:w-96 px-2 lg:px-0" src={thumbnail_url} alt="Thumbnail" /></figure>
       <div className="card-title px-4 pt-2 flex justify-between">
         <div className="flex items-center"><FaStar /><h1 className="ml-2">{rating}</h1></div>
         <div>
