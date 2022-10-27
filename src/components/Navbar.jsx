@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from '../assets/images/logo.png'
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import demoProfile from '../assets/images/demoProfile.png'
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -36,7 +37,7 @@ const Navbar = () => {
         <ul className="menu menu-horizontal p-0 text-lg font-bold">
           <li><Link to="/courses" >Courses</Link></li>
           <li><a>FAQ</a></li>
-          <li><a>Blog</a></li>
+          <li><Link to='/blog' >Blog</Link></li>
           <li>
             <label className="swap swap-rotate">
               <input type="checkbox" />
@@ -47,7 +48,9 @@ const Navbar = () => {
           {
             user?.uid ? <><li><Link onClick={userLogOut} to="/" >Log out</Link></li>
               <li title={user?.displayName}><div className="avatar"><div className="w-10 rounded-full">
-                <img src={user?.photoURL} alt="..." />
+                {
+                  user?.photoURL ? <img src={user?.photoURL} alt="..." /> : <img className="p-2" src={demoProfile} alt="..." srcset="" />
+                }
               </div></div></li></> : <><li><Link to="/register" >Register</Link></li>
               <li><Link to="/login" >Login</Link></li></>
           }

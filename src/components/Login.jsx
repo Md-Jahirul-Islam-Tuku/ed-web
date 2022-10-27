@@ -1,13 +1,15 @@
 import React from 'react';
-import google from '../../src/google.png';
-import github from '../../src/github.png'
+import google from '../../src/assets/images/google.png';
+import github from '../../src/assets/images/github.png'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
+import { useState } from 'react';
 
 const Login = () => {
   const { userLogin, setLoading, setUser, googleLogin, githubLogin } = useContext(AuthContext);
+  const [wrong, setWrong] = useState(null);
   const navigate = useNavigate();
   const location = useLocation()
   const from = location.state?.from?.pathname || "/";
@@ -21,6 +23,7 @@ const Login = () => {
         const user = result.user;
         if (user?.emailVerified) {
           setUser(user);
+          form.reset();
           toast.custom((t) => (
             <div
               className={`bg-success text-lg text-white font-semibold px-6 py-4 shadow-md rounded-full ${t.visible ? 'animate-enter' : 'animate-leave'
@@ -32,6 +35,7 @@ const Login = () => {
           navigate(from, { replace: true });
         }
         else {
+          setWrong(null)
           toast.custom((t) => (
             <div
               className={`bg-error text-lg text-white font-semibold px-6 py-4 shadow-md rounded-full ${t.visible ? 'animate-enter' : 'animate-leave'
@@ -41,7 +45,10 @@ const Login = () => {
             </div>
           ));
         }
-      }).catch(error => console.error(error)).finally(() => setLoading(false))
+      }).catch(error => {
+        console.error(error)
+        return setWrong(error.message);
+      }).finally(() => setLoading(false))
   }
 
   const handleGoogleLogin = () => {
@@ -51,10 +58,10 @@ const Login = () => {
         navigate(from, { replace: true });
         toast.custom((t) => (
           <div
-            className={`bg-error text-lg text-white font-semibold px-6 py-4 shadow-md rounded-full ${t.visible ? 'animate-enter' : 'animate-leave'
+            className={`bg-success text-lg text-white font-semibold px-6 py-4 shadow-md rounded-full ${t.visible ? 'animate-enter' : 'animate-leave'
               }`}
           >
-            Please verify email. Otherwise, can't Log in.
+            👋 Successfully ! Log in.
           </div>
         ));
       })
@@ -63,14 +70,16 @@ const Login = () => {
   const handleGithubLogin = () => {
     githubLogin()
       .then(result => {
+        const user = result.user;
+        setUser(user);
         console.log(result.user);
         navigate(from, { replace: true });
         toast.custom((t) => (
           <div
-            className={`bg-error text-lg text-white font-semibold px-6 py-4 shadow-md rounded-full ${t.visible ? 'animate-enter' : 'animate-leave'
+            className={`bg-success text-lg text-white font-semibold px-6 py-4 shadow-md rounded-full ${t.visible ? 'animate-enter' : 'animate-leave'
               }`}
           >
-            Please verify email. Otherwise, can't Log in.
+            👋 Successfully ! Log in.
           </div>
         ));
       })
@@ -86,15 +95,18 @@ const Login = () => {
             <label className="label">
               <span className="label-text">Email</span>
             </label>
-            <input name='email' type="text" placeholder="email" className="input input-bordered" />
+            <input required name='email' type="text" placeholder="email" className="input input-bordered" />
           </div>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Password</span>
             </label>
-            <input name='password' type="password" placeholder="password" className="input input-bordered" />
+            <input required name='password' type="password" placeholder="password" className="input input-bordered" />
             <div className='text-left font-semibold'>
               Forgot password? <button className="btn btn-link no-underline hover:underline font-bold">reset</button>
+            </div>
+            <div className='text-left font-semibold text-error'>
+              {wrong}
             </div>
           </div>
           <div className="form-control mt-2">
