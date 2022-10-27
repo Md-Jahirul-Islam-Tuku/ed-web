@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import google from '../../src/google.png';
-import github from '../../src/github.png'
 import { useContext } from 'react';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { updateProfile } from 'firebase/auth';
@@ -69,16 +67,10 @@ const Register = () => {
             </label>
             <input name='password' type="password" placeholder="password" className="input input-bordered" />
           </div>
-          <div className="form-control mt-2">
+          <div className="form-control mt-5">
             <button className="btn btn-warning font-bold text-lg">Register</button>
           </div>
-          <div className="form-control mt-2">
-            <button className="btn btn-outline btn-dark my-2"><img className='h-6 mr-2' src={google} alt="" /> Register with Google</button>
-          </div>
-          <div className="form-control mt-2">
-            <button className="btn btn-outline btn-dark"><img className='h-6 mr-2' src={github} alt="" /> Register with Github</button>
-          </div>
-          <div className='my-3 font-bold'>
+          <div className='my-5 font-bold'>
             Have you an account? Please <Link to='/login' className="no-underline hover:underline font-bold text-blue-600">Log in</Link>
           </div>
         </div>

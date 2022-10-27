@@ -7,7 +7,7 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
 
 const Login = () => {
-  const { userLogin, setLoading, setUser } = useContext(AuthContext);
+  const { userLogin, setLoading, setUser, googleLogin, githubLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation()
   const from = location.state?.from?.pathname || "/";
@@ -43,6 +43,40 @@ const Login = () => {
         }
       }).catch(error => console.error(error)).finally(() => setLoading(false))
   }
+
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then(result => {
+        console.log(result.user);
+        navigate(from, { replace: true });
+        toast.custom((t) => (
+          <div
+            className={`bg-error text-lg text-white font-semibold px-6 py-4 shadow-md rounded-full ${t.visible ? 'animate-enter' : 'animate-leave'
+              }`}
+          >
+            Please verify email. Otherwise, can't Log in.
+          </div>
+        ));
+      })
+      .catch(error => console.error(error))
+  }
+  const handleGithubLogin = () => {
+    githubLogin()
+      .then(result => {
+        console.log(result.user);
+        navigate(from, { replace: true });
+        toast.custom((t) => (
+          <div
+            className={`bg-error text-lg text-white font-semibold px-6 py-4 shadow-md rounded-full ${t.visible ? 'animate-enter' : 'animate-leave'
+              }`}
+          >
+            Please verify email. Otherwise, can't Log in.
+          </div>
+        ));
+      })
+      .catch(error => console.error(error))
+  }
+
   return (
     <div className="lg:w-[40%]">
       <div className="card shadow-2xl bg-base-100 my-10 lg:my-[10vh] lg:left-[20vw]">
@@ -69,10 +103,10 @@ const Login = () => {
         </form>
         <div className="px-5">
           <div className="form-control mt-2">
-            <button className="btn btn-outline btn-dark my-2"><img className='h-6 mr-2' src={google} alt="" /> Log in with Google</button>
+            <button onClick={handleGoogleLogin} className="btn btn-outline btn-dark my-2"><img className='h-6 mr-2' src={google} alt="" /> Log in with Google</button>
           </div>
           <div className="form-control mt-2">
-            <button className="btn btn-outline btn-dark"><img className='h-6 mr-2' src={github} alt="" /> Log in with Github</button>
+            <button onClick={handleGithubLogin} className="btn btn-outline btn-dark"><img className='h-6 mr-2' src={github} alt="" /> Log in with Github</button>
           </div>
           <div className='my-5 font-bold'>
             Don't have an account? Please <Link to='/register' className="no-underline hover:underline font-bold text-blue-600">Register</Link>
