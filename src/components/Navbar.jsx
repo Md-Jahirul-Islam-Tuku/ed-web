@@ -36,7 +36,7 @@ const Navbar = () => {
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal p-0 text-lg font-bold">
           <li><Link to="/courses" >Courses</Link></li>
-          <li><a>FAQ</a></li>
+          <li><Link to='/faq' >FAQ</Link></li>
           <li><Link to='/blog' >Blog</Link></li>
           <li>
             <label className="swap swap-rotate">

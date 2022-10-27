@@ -8,6 +8,7 @@ import Main from "../layout/Main";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../components/ErrorPage";
 import Blog from "../components/Blog";
+import FAQ from "../components/FAQ";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: '/blog',
         element: <Blog></Blog>
+      },
+      {
+        path: '/faq',
+        element: <FAQ></FAQ>
       },
       {
         path: '/register',
