@@ -20,11 +20,8 @@ const Login = () => {
                      <span className="label-text">Password</span>
                   </label>
                   <input type="text" placeholder="password" className="input input-bordered" />
-                  <div className='text-left'>
+                  <div className='text-left font-semibold'>
                      Forgot password? <button className="btn btn-link no-underline hover:underline font-bold">reset</button>
-                  </div>
-                  <div className='text-left'>
-                     Don't have an account? Please <Link to='/register' className="no-underline hover:underline font-bold text-blue-600">Register</Link>
                   </div>
                </div>
                <div className="form-control mt-2">
@@ -36,6 +33,9 @@ const Login = () => {
                <div className="form-control mt-2">
                   <button className="btn btn-outline btn-dark"><img className='h-6 mr-2' src={github} alt="" /> Log in with Github</button>
                </div>
+                  <div className='my-3 font-bold'>
+                     Don't have an account? Please <Link to='/register' className="no-underline hover:underline font-bold text-blue-600">Register</Link>
+                  </div>
             </div>
          </div>
       </div>

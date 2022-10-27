@@ -14,7 +14,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
-        loader: () => fetch('http://localhost:5000/courses')
+        loader: () => fetch('https://ed-web-server.vercel.app/courses')
       },
       {
         path: '/login',
@@ -27,17 +27,17 @@ const router = createBrowserRouter([
       {
         path: '/courses',
         element: <Home></Home>,
-        loader: () => fetch('http://localhost:5000/courses')
+        loader: () => fetch('https://ed-web-server.vercel.app/courses')
       },
       {
         path: '/course/:id',
         element: <CourseDetails></CourseDetails>,
-        loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`)
+        loader: ({ params }) => fetch(`https://ed-web-server.vercel.app/courses/${params.id}`)
       },
       {
         path: '/premium-access/:id',
         element: <PremiumAccess></PremiumAccess>,
-        loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`)
+        loader: ({ params }) => fetch(`https://ed-web-server.vercel.app/courses/${params.id}`)
       },
     ]
   }

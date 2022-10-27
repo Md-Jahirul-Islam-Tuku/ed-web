@@ -32,12 +32,6 @@ const Register = () => {
               <span className="label-text">Password</span>
             </label>
             <input type="password" placeholder="password" className="input input-bordered" />
-            <div className='text-left'>
-              Forgot password? <button className="btn btn-link no-underline hover:underline font-bold">reset</button>
-            </div>
-            <div className='text-left'>
-              Have you an account? Please <Link to='/login' className="no-underline hover:underline font-bold text-blue-600">Log in</Link>
-            </div>
           </div>
           <div className="form-control mt-2">
             <button className="btn btn-warning">Register</button>
@@ -47,6 +41,9 @@ const Register = () => {
           </div>
           <div className="form-control mt-2">
             <button className="btn btn-outline btn-dark"><img className='h-6 mr-2' src={github} alt="" /> Register with Github</button>
+          </div>
+          <div className='my-3 font-bold'>
+            Have you an account? Please <Link to='/login' className="no-underline hover:underline font-bold text-blue-600">Log in</Link>
           </div>
         </div>
       </div>
